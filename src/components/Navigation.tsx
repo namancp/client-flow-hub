@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import {
   LayoutDashboard,
@@ -24,6 +24,15 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { useAuth } from '@/contexts/AuthContext';
+import { 
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger
+} from '@/components/ui/dropdown-menu';
 
 type NavItem = {
   label: string;
@@ -39,6 +48,8 @@ export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
   const isMobile = useIsMobile();
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
 
   const primaryNavItems: NavItem[] = [
     {
@@ -99,6 +110,11 @@ export const Navigation = () => {
 
   const toggleSidebar = () => setIsOpen(!isOpen);
 
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+  };
+
   const NavHeader = () => (
     <div className="px-4 py-6 flex items-center justify-between">
       <Link to="/" className="flex items-center space-x-2">
@@ -119,21 +135,46 @@ export const Navigation = () => {
 
   const UserProfile = () => (
     <div className="mt-auto p-4">
-      <div className={cn(
-        "flex items-center space-x-3 p-3 rounded-md transition-colors",
-        "hover:bg-sidebar-accent cursor-pointer"
-      )}>
-        <Avatar className="h-10 w-10 border-2 border-white">
-          <AvatarImage src="https://i.pravatar.cc/100" alt="User" />
-          <AvatarFallback>JD</AvatarFallback>
-        </Avatar>
-        {(!isMobile || isOpen) && (
-          <div className="flex-1 min-w-0">
-            <p className="font-medium text-sm">Jane Doe</p>
-            <p className="text-xs text-muted-foreground truncate">jane.doe@example.com</p>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <div className={cn(
+            "flex items-center space-x-3 p-3 rounded-md transition-colors",
+            "hover:bg-sidebar-accent cursor-pointer"
+          )}>
+            <Avatar className="h-10 w-10 border-2 border-white">
+              <AvatarImage src="https://i.pravatar.cc/100" alt="User" />
+              <AvatarFallback>{user?.name.substring(0, 2) || 'JD'}</AvatarFallback>
+            </Avatar>
+            {(!isMobile || isOpen) && (
+              <div className="flex-1 min-w-0">
+                <p className="font-medium text-sm">{user?.name || 'Jane Doe'}</p>
+                <p className="text-xs text-muted-foreground truncate">{user?.email || 'jane.doe@example.com'}</p>
+              </div>
+            )}
           </div>
-        )}
-      </div>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="end" className="w-56">
+          <DropdownMenuLabel>My Account</DropdownMenuLabel>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem>
+            <UserCircle className="mr-2 h-4 w-4" />
+            <span>Profile</span>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <BellRing className="mr-2 h-4 w-4" />
+            <span>Notifications</span>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <Settings className="mr-2 h-4 w-4" />
+            <span>Settings</span>
+          </DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem onClick={handleLogout}>
+            <LogOut className="mr-2 h-4 w-4" />
+            <span>Log out</span>
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
     </div>
   );
 
