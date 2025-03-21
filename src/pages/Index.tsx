@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { DashboardLayout } from '@/layouts/DashboardLayout';
 import { AccountsOverview } from '@/components/AccountsOverview';
@@ -294,39 +293,93 @@ const Index = () => {
         </TabsContent>
         
         <TabsContent value="accounts" className="animate-fade-in">
-          <AccountsOverview />
+          <div className="space-y-6">
+            <div>
+              <h2 className="text-2xl font-semibold tracking-tight">Accounts Management</h2>
+              <p className="text-muted-foreground">View and manage all your linked financial accounts in one place</p>
+            </div>
+            <AccountsOverview />
+          </div>
         </TabsContent>
         
         <TabsContent value="investments" className="animate-fade-in">
-          <InvestmentPortfolio />
+          <div className="space-y-6">
+            <div>
+              <h2 className="text-2xl font-semibold tracking-tight">Investment Portfolio</h2>
+              <p className="text-muted-foreground">Track performance and manage your investment assets across markets</p>
+            </div>
+            <InvestmentPortfolio />
+          </div>
         </TabsContent>
         
         <TabsContent value="planning" className="animate-fade-in">
-          <FinancialPlanning />
+          <div className="space-y-6">
+            <div>
+              <h2 className="text-2xl font-semibold tracking-tight">Financial Planning</h2>
+              <p className="text-muted-foreground">Set goals, track progress, and plan your financial future with confidence</p>
+            </div>
+            <FinancialPlanning />
+          </div>
         </TabsContent>
         
         <TabsContent value="insurance" className="animate-fade-in">
-          <InsuranceCards />
+          <div className="space-y-6">
+            <div>
+              <h2 className="text-2xl font-semibold tracking-tight">Insurance Protection</h2>
+              <p className="text-muted-foreground">Manage your insurance policies and ensure comprehensive coverage</p>
+            </div>
+            <InsuranceCards />
+          </div>
         </TabsContent>
         
         <TabsContent value="loans" className="animate-fade-in">
-          <LoanManagement />
+          <div className="space-y-6">
+            <div>
+              <h2 className="text-2xl font-semibold tracking-tight">Loan Management</h2>
+              <p className="text-muted-foreground">Track and manage your loans, mortgages, and credit facilities</p>
+            </div>
+            <LoanManagement />
+          </div>
         </TabsContent>
         
         <TabsContent value="cash" className="animate-fade-in">
-          <CashFlow />
+          <div className="space-y-6">
+            <div>
+              <h2 className="text-2xl font-semibold tracking-tight">Cash Management</h2>
+              <p className="text-muted-foreground">Monitor cash flow, track expenses, and manage your liquid assets</p>
+            </div>
+            <CashFlow />
+          </div>
         </TabsContent>
         
         <TabsContent value="transfers" className="animate-fade-in">
-          <TransferFunds />
+          <div className="space-y-6">
+            <div>
+              <h2 className="text-2xl font-semibold tracking-tight">Fund Transfers</h2>
+              <p className="text-muted-foreground">Send and receive funds securely between your accounts and external destinations</p>
+            </div>
+            <TransferFunds />
+          </div>
         </TabsContent>
         
         <TabsContent value="documents" className="animate-fade-in">
-          <DocumentCenter />
+          <div className="space-y-6">
+            <div>
+              <h2 className="text-2xl font-semibold tracking-tight">Document Center</h2>
+              <p className="text-muted-foreground">Store, organize, and securely share your important financial documents</p>
+            </div>
+            <DocumentCenter />
+          </div>
         </TabsContent>
         
         <TabsContent value="tax" className="animate-fade-in">
-          <TaxPlanning />
+          <div className="space-y-6">
+            <div>
+              <h2 className="text-2xl font-semibold tracking-tight">Tax Planning</h2>
+              <p className="text-muted-foreground">Organize tax documents, plan for tax events, and maximize your tax efficiency</p>
+            </div>
+            <TaxPlanning />
+          </div>
         </TabsContent>
       </Tabs>
     </DashboardLayout>
