@@ -50,10 +50,8 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
 
   return (
     <div className="min-h-screen bg-background flex">
-      <div className="flex-shrink-0 w-64 md:block h-screen">
-        <Navigation />
-      </div>
-      <div className="flex-1 flex flex-col w-0">
+      <Navigation />
+      <div className="flex-1 flex flex-col">
         <header className="h-16 border-b flex items-center justify-end px-6">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
