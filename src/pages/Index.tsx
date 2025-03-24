@@ -31,6 +31,17 @@ const performanceData = [
   { date: 'Dec', assets: 834000 },
 ];
 
+const currentDate = new Date();
+const formatDate = (date) => {
+  const optionsDate = { month: 'short', day: '2-digit', year: 'numeric' };
+  const optionsTime = { hour: '2-digit', minute: '2-digit', hour12: true };
+
+  const formattedDate = date.toLocaleDateString('en-US', optionsDate);
+  const formattedTime = date.toLocaleTimeString('en-US', optionsTime);
+
+  return `${formattedDate.replace(',', '')} • ${formattedTime}`;
+};
+
 const Index = () => {
   const formatCurrency = (value: number) => {
     return new Intl.NumberFormat('en-US', {
@@ -150,7 +161,7 @@ const Index = () => {
               <div>
                 <p className="text-sm text-muted-foreground mb-1">Next Meeting</p>
                 <h3 className="text-lg font-semibold">Annual Review</h3>
-                <p className="text-sm mt-1">Dec 15, 2023 • 2:00 PM</p>
+                <p className="text-sm mt-1">{formatDate(currentDate)}</p>
               </div>
               <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
                 <Calendar className="h-5 w-5" />
