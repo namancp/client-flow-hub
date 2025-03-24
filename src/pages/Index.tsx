@@ -74,7 +74,7 @@ const Index = () => {
         <div className="flex items-center mt-4 sm:mt-0 space-x-2">
           <Button variant="outline" size="sm" className="h-9">
             <Calendar className="h-4 w-4 mr-2" />
-            December 01, 2023
+            {formatDate(currentDate)}
           </Button>
           <Button variant="outline" size="icon" className="h-9 w-9 relative">
             <BellRing className="h-4 w-4" />
