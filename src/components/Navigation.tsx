@@ -58,6 +58,11 @@ export const Navigation = () => {
       href: '/',
     },
     {
+      label: 'Accounts',
+      icon: <BanknoteIcon className="h-5 w-5" />,
+      href: '/accounts',
+    },
+    {
       label: 'Documents',
       icon: <FileText className="h-5 w-5" />,
       href: '/documents',
@@ -181,7 +186,7 @@ export const Navigation = () => {
   return (
     <aside className={cn(
       "bg-sidebar border-r border-border transition-all duration-300 flex flex-col z-30",
-      isMobile ? (isOpen ? "fixed inset-y-0 left-0 w-64" : "fixed inset-y-0 left-0 w-16") : "w-64",
+      isMobile ? (isOpen ? "fixed inset-y-0 left-0 w-64" : "fixed inset-y-0 left-0 w-16") : "w-64 h-screen sticky top-0",
       "h-screen"
     )}>
       <NavHeader />
