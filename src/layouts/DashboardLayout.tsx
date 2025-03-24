@@ -50,7 +50,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
 
   return (
     <div className="min-h-screen bg-background flex">
-      <div className="flex-shrink-0 w-64 md:block">
+      <div className="flex-shrink-0 w-64 md:block h-screen">
         <Navigation />
       </div>
       <div className="flex-1 flex flex-col w-0">

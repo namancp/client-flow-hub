@@ -36,12 +36,12 @@
  
     --radius: 0.5rem;
     
-    --sidebar: 222.2 84% 4.9%;
+    --sidebar: 222.2 47.4% 11.2%;
     --sidebar-foreground: 210 40% 98%;
     --sidebar-border: 217.2 32.6% 17.5%;
     --sidebar-ring: 212.7 26.8% 83.9%;
-    --sidebar-accent: 210 40% 96.1%;
-    --sidebar-accent-foreground: 222.2 47.4% 11.2%;
+    --sidebar-accent: 217.2 32.6% 17.5%;
+    --sidebar-accent-foreground: 210 40% 98%;
 
     --financial-positive: 142.1 76.2% 36.3%;
     --financial-negative: 346.8 77.2% 49.8%;

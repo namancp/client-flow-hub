@@ -127,11 +127,11 @@ export const Navigation = () => {
           <span className="text-primary-foreground font-semibold text-lg">CF</span>
         </div>
         {(!isMobile || isOpen) && (
-          <span className="font-medium text-xl">ClientFlow</span>
+          <span className="font-medium text-xl text-sidebar-foreground">ClientFlow</span>
         )}
       </Link>
       {isMobile && (
-        <Button variant="ghost" size="icon" onClick={toggleSidebar}>
+        <Button variant="ghost" size="icon" onClick={toggleSidebar} className="text-sidebar-foreground">
           {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </Button>
       )}
@@ -152,8 +152,8 @@ export const Navigation = () => {
             </Avatar>
             {(!isMobile || isOpen) && (
               <div className="flex-1 min-w-0">
-                <p className="font-medium text-sm">{user?.name || 'Jane Doe'}</p>
-                <p className="text-xs text-muted-foreground truncate">{user?.email || 'jane.doe@example.com'}</p>
+                <p className="font-medium text-sm text-sidebar-foreground">{user?.name || 'Jane Doe'}</p>
+                <p className="text-xs text-sidebar-foreground/70 truncate">{user?.email || 'jane.doe@example.com'}</p>
               </div>
             )}
           </div>
@@ -185,7 +185,7 @@ export const Navigation = () => {
 
   return (
     <aside className={cn(
-      "bg-sidebar border-r border-border transition-all duration-300 flex flex-col z-30",
+      "bg-sidebar text-sidebar-foreground border-r border-sidebar-border transition-all duration-300 flex flex-col z-30",
       isMobile ? (isOpen ? "fixed inset-y-0 left-0 w-64" : "fixed inset-y-0 left-0 w-16") : "w-64 h-screen sticky top-0",
       "h-screen"
     )}>
