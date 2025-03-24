@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { DashboardLayout } from '@/layouts/DashboardLayout';
 import { AccountsOverview } from '@/components/AccountsOverview';
@@ -299,44 +298,6 @@ const Index = () => {
               <h2 className="text-2xl font-semibold tracking-tight">Accounts Management</h2>
               <p className="text-muted-foreground">View and manage all your linked financial accounts in one place</p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-              <Card className="border">
-                <CardContent className="p-6">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <h3 className="text-lg font-semibold">Link New Account</h3>
-                      <p className="text-sm text-muted-foreground mt-1">Connect your external financial accounts</p>
-                    </div>
-                    <BanknoteIcon className="h-6 w-6 text-primary" />
-                  </div>
-                  <Button className="mt-4 w-full">Connect Account</Button>
-                </CardContent>
-              </Card>
-              <Card className="border">
-                <CardContent className="p-6">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <h3 className="text-lg font-semibold">Account Statements</h3>
-                      <p className="text-sm text-muted-foreground mt-1">Download and view recent statements</p>
-                    </div>
-                    <FileText className="h-6 w-6 text-primary" />
-                  </div>
-                  <Button variant="outline" className="mt-4 w-full">View Statements</Button>
-                </CardContent>
-              </Card>
-              <Card className="border">
-                <CardContent className="p-6">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <h3 className="text-lg font-semibold">Account Security</h3>
-                      <p className="text-sm text-muted-foreground mt-1">Manage account access and settings</p>
-                    </div>
-                    <Shield className="h-6 w-6 text-primary" />
-                  </div>
-                  <Button variant="outline" className="mt-4 w-full">Security Settings</Button>
-                </CardContent>
-              </Card>
-            </div>
             <AccountsOverview />
           </div>
         </TabsContent>
@@ -346,44 +307,6 @@ const Index = () => {
             <div>
               <h2 className="text-2xl font-semibold tracking-tight">Investment Portfolio</h2>
               <p className="text-muted-foreground">Track performance and manage your investment assets across markets</p>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-              <Card className="border">
-                <CardContent className="p-6">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <h3 className="text-lg font-semibold">Performance Analysis</h3>
-                      <p className="text-sm text-muted-foreground mt-1">Review detailed performance metrics</p>
-                    </div>
-                    <TrendingUp className="h-6 w-6 text-primary" />
-                  </div>
-                  <Button className="mt-4 w-full">Analyze Portfolio</Button>
-                </CardContent>
-              </Card>
-              <Card className="border">
-                <CardContent className="p-6">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <h3 className="text-lg font-semibold">Rebalance Portfolio</h3>
-                      <p className="text-sm text-muted-foreground mt-1">Adjust your asset allocation</p>
-                    </div>
-                    <ArrowRightLeft className="h-6 w-6 text-primary" />
-                  </div>
-                  <Button variant="outline" className="mt-4 w-full">Rebalance</Button>
-                </CardContent>
-              </Card>
-              <Card className="border">
-                <CardContent className="p-6">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <h3 className="text-lg font-semibold">Tax Efficiency</h3>
-                      <p className="text-sm text-muted-foreground mt-1">Optimize for tax-efficient investing</p>
-                    </div>
-                    <Receipt className="h-6 w-6 text-primary" />
-                  </div>
-                  <Button variant="outline" className="mt-4 w-full">Optimize</Button>
-                </CardContent>
-              </Card>
             </div>
             <InvestmentPortfolio />
           </div>
@@ -395,44 +318,6 @@ const Index = () => {
               <h2 className="text-2xl font-semibold tracking-tight">Financial Planning</h2>
               <p className="text-muted-foreground">Set goals, track progress, and plan your financial future with confidence</p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-              <Card className="border">
-                <CardContent className="p-6">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <h3 className="text-lg font-semibold">Goal Setting</h3>
-                      <p className="text-sm text-muted-foreground mt-1">Create and manage financial goals</p>
-                    </div>
-                    <ClipboardList className="h-6 w-6 text-primary" />
-                  </div>
-                  <Button className="mt-4 w-full">Set New Goal</Button>
-                </CardContent>
-              </Card>
-              <Card className="border">
-                <CardContent className="p-6">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <h3 className="text-lg font-semibold">Retirement Planning</h3>
-                      <p className="text-sm text-muted-foreground mt-1">Prepare for your retirement</p>
-                    </div>
-                    <Calendar className="h-6 w-6 text-primary" />
-                  </div>
-                  <Button variant="outline" className="mt-4 w-full">Plan Retirement</Button>
-                </CardContent>
-              </Card>
-              <Card className="border">
-                <CardContent className="p-6">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <h3 className="text-lg font-semibold">Estate Planning</h3>
-                      <p className="text-sm text-muted-foreground mt-1">Organize your estate and legacy</p>
-                    </div>
-                    <FileText className="h-6 w-6 text-primary" />
-                  </div>
-                  <Button variant="outline" className="mt-4 w-full">Estate Tools</Button>
-                </CardContent>
-              </Card>
-            </div>
             <FinancialPlanning />
           </div>
         </TabsContent>
@@ -442,56 +327,6 @@ const Index = () => {
             <div>
               <h2 className="text-2xl font-semibold tracking-tight">Insurance Protection</h2>
               <p className="text-muted-foreground">Manage your insurance policies and ensure comprehensive coverage</p>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
-              <Card className="border">
-                <CardContent className="p-6">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <h3 className="text-lg font-semibold">Life Insurance</h3>
-                      <p className="text-sm text-muted-foreground mt-1">Term & permanent policies</p>
-                    </div>
-                    <Shield className="h-6 w-6 text-primary" />
-                  </div>
-                  <Button variant="outline" className="mt-4 w-full">View Policies</Button>
-                </CardContent>
-              </Card>
-              <Card className="border">
-                <CardContent className="p-6">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <h3 className="text-lg font-semibold">Health Insurance</h3>
-                      <p className="text-sm text-muted-foreground mt-1">Medical coverage details</p>
-                    </div>
-                    <Shield className="h-6 w-6 text-primary" />
-                  </div>
-                  <Button variant="outline" className="mt-4 w-full">View Coverage</Button>
-                </CardContent>
-              </Card>
-              <Card className="border">
-                <CardContent className="p-6">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <h3 className="text-lg font-semibold">Property Insurance</h3>
-                      <p className="text-sm text-muted-foreground mt-1">Home & auto protection</p>
-                    </div>
-                    <Shield className="h-6 w-6 text-primary" />
-                  </div>
-                  <Button variant="outline" className="mt-4 w-full">View Policies</Button>
-                </CardContent>
-              </Card>
-              <Card className="border">
-                <CardContent className="p-6">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <h3 className="text-lg font-semibold">Add Insurance</h3>
-                      <p className="text-sm text-muted-foreground mt-1">Link new policy</p>
-                    </div>
-                    <Shield className="h-6 w-6 text-primary" />
-                  </div>
-                  <Button className="mt-4 w-full">Add Policy</Button>
-                </CardContent>
-              </Card>
             </div>
             <InsuranceCards />
           </div>
@@ -503,44 +338,6 @@ const Index = () => {
               <h2 className="text-2xl font-semibold tracking-tight">Loan Management</h2>
               <p className="text-muted-foreground">Track and manage your loans, mortgages, and credit facilities</p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-              <Card className="border">
-                <CardContent className="p-6">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <h3 className="text-lg font-semibold">Mortgage Calculator</h3>
-                      <p className="text-sm text-muted-foreground mt-1">Calculate payments and scenarios</p>
-                    </div>
-                    <BanknoteIcon className="h-6 w-6 text-primary" />
-                  </div>
-                  <Button className="mt-4 w-full">Calculate</Button>
-                </CardContent>
-              </Card>
-              <Card className="border">
-                <CardContent className="p-6">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <h3 className="text-lg font-semibold">Refinancing Options</h3>
-                      <p className="text-sm text-muted-foreground mt-1">Explore better rates & terms</p>
-                    </div>
-                    <ArrowRightLeft className="h-6 w-6 text-primary" />
-                  </div>
-                  <Button variant="outline" className="mt-4 w-full">View Options</Button>
-                </CardContent>
-              </Card>
-              <Card className="border">
-                <CardContent className="p-6">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <h3 className="text-lg font-semibold">Credit Analysis</h3>
-                      <p className="text-sm text-muted-foreground mt-1">Review your credit standing</p>
-                    </div>
-                    <ClipboardList className="h-6 w-6 text-primary" />
-                  </div>
-                  <Button variant="outline" className="mt-4 w-full">Analyze Credit</Button>
-                </CardContent>
-              </Card>
-            </div>
             <LoanManagement />
           </div>
         </TabsContent>
@@ -550,44 +347,6 @@ const Index = () => {
             <div>
               <h2 className="text-2xl font-semibold tracking-tight">Cash Management</h2>
               <p className="text-muted-foreground">Monitor cash flow, track expenses, and manage your liquid assets</p>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-              <Card className="border">
-                <CardContent className="p-6">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <h3 className="text-lg font-semibold">Budgeting Tools</h3>
-                      <p className="text-sm text-muted-foreground mt-1">Create and manage your budget</p>
-                    </div>
-                    <CircleDollarSign className="h-6 w-6 text-primary" />
-                  </div>
-                  <Button className="mt-4 w-full">Budget Planner</Button>
-                </CardContent>
-              </Card>
-              <Card className="border">
-                <CardContent className="p-6">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <h3 className="text-lg font-semibold">Expense Tracking</h3>
-                      <p className="text-sm text-muted-foreground mt-1">Monitor your spending patterns</p>
-                    </div>
-                    <Receipt className="h-6 w-6 text-primary" />
-                  </div>
-                  <Button variant="outline" className="mt-4 w-full">Track Expenses</Button>
-                </CardContent>
-              </Card>
-              <Card className="border">
-                <CardContent className="p-6">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <h3 className="text-lg font-semibold">Liquidity Analysis</h3>
-                      <p className="text-sm text-muted-foreground mt-1">Assess your liquid assets</p>
-                    </div>
-                    <TrendingUp className="h-6 w-6 text-primary" />
-                  </div>
-                  <Button variant="outline" className="mt-4 w-full">Analyze</Button>
-                </CardContent>
-              </Card>
             </div>
             <CashFlow />
           </div>
@@ -599,44 +358,6 @@ const Index = () => {
               <h2 className="text-2xl font-semibold tracking-tight">Fund Transfers</h2>
               <p className="text-muted-foreground">Send and receive funds securely between your accounts and external destinations</p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-              <Card className="border">
-                <CardContent className="p-6">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <h3 className="text-lg font-semibold">New Transfer</h3>
-                      <p className="text-sm text-muted-foreground mt-1">Move funds between accounts</p>
-                    </div>
-                    <ArrowRightLeft className="h-6 w-6 text-primary" />
-                  </div>
-                  <Button className="mt-4 w-full">Transfer Funds</Button>
-                </CardContent>
-              </Card>
-              <Card className="border">
-                <CardContent className="p-6">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <h3 className="text-lg font-semibold">Scheduled Transfers</h3>
-                      <p className="text-sm text-muted-foreground mt-1">Manage recurring transfers</p>
-                    </div>
-                    <Calendar className="h-6 w-6 text-primary" />
-                  </div>
-                  <Button variant="outline" className="mt-4 w-full">View Schedule</Button>
-                </CardContent>
-              </Card>
-              <Card className="border">
-                <CardContent className="p-6">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <h3 className="text-lg font-semibold">Transfer History</h3>
-                      <p className="text-sm text-muted-foreground mt-1">Review past transactions</p>
-                    </div>
-                    <ClipboardList className="h-6 w-6 text-primary" />
-                  </div>
-                  <Button variant="outline" className="mt-4 w-full">View History</Button>
-                </CardContent>
-              </Card>
-            </div>
             <TransferFunds />
           </div>
         </TabsContent>
@@ -647,56 +368,6 @@ const Index = () => {
               <h2 className="text-2xl font-semibold tracking-tight">Document Center</h2>
               <p className="text-muted-foreground">Store, organize, and securely share your important financial documents</p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
-              <Card className="border">
-                <CardContent className="p-6">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <h3 className="text-lg font-semibold">Upload Document</h3>
-                      <p className="text-sm text-muted-foreground mt-1">Add files to your vault</p>
-                    </div>
-                    <FileText className="h-6 w-6 text-primary" />
-                  </div>
-                  <Button className="mt-4 w-full">Upload</Button>
-                </CardContent>
-              </Card>
-              <Card className="border">
-                <CardContent className="p-6">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <h3 className="text-lg font-semibold">Shared Documents</h3>
-                      <p className="text-sm text-muted-foreground mt-1">Manage shared access</p>
-                    </div>
-                    <User className="h-6 w-6 text-primary" />
-                  </div>
-                  <Button variant="outline" className="mt-4 w-full">Manage Sharing</Button>
-                </CardContent>
-              </Card>
-              <Card className="border">
-                <CardContent className="p-6">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <h3 className="text-lg font-semibold">Tax Documents</h3>
-                      <p className="text-sm text-muted-foreground mt-1">Access tax-related files</p>
-                    </div>
-                    <Receipt className="h-6 w-6 text-primary" />
-                  </div>
-                  <Button variant="outline" className="mt-4 w-full">View Tax Docs</Button>
-                </CardContent>
-              </Card>
-              <Card className="border">
-                <CardContent className="p-6">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <h3 className="text-lg font-semibold">Create Folder</h3>
-                      <p className="text-sm text-muted-foreground mt-1">Organize your documents</p>
-                    </div>
-                    <FileText className="h-6 w-6 text-primary" />
-                  </div>
-                  <Button variant="outline" className="mt-4 w-full">New Folder</Button>
-                </CardContent>
-              </Card>
-            </div>
             <DocumentCenter />
           </div>
         </TabsContent>
@@ -706,44 +377,6 @@ const Index = () => {
             <div>
               <h2 className="text-2xl font-semibold tracking-tight">Tax Planning</h2>
               <p className="text-muted-foreground">Organize tax documents, plan for tax events, and maximize your tax efficiency</p>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-              <Card className="border">
-                <CardContent className="p-6">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <h3 className="text-lg font-semibold">Tax Projection</h3>
-                      <p className="text-sm text-muted-foreground mt-1">Estimate upcoming tax liability</p>
-                    </div>
-                    <TrendingUp className="h-6 w-6 text-primary" />
-                  </div>
-                  <Button className="mt-4 w-full">Project Taxes</Button>
-                </CardContent>
-              </Card>
-              <Card className="border">
-                <CardContent className="p-6">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <h3 className="text-lg font-semibold">Tax-Loss Harvesting</h3>
-                      <p className="text-sm text-muted-foreground mt-1">Optimize investment tax efficiency</p>
-                    </div>
-                    <Receipt className="h-6 w-6 text-primary" />
-                  </div>
-                  <Button variant="outline" className="mt-4 w-full">Harvest Losses</Button>
-                </CardContent>
-              </Card>
-              <Card className="border">
-                <CardContent className="p-6">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <h3 className="text-lg font-semibold">Tax Documents</h3>
-                      <p className="text-sm text-muted-foreground mt-1">Access tax forms and statements</p>
-                    </div>
-                    <FileText className="h-6 w-6 text-primary" />
-                  </div>
-                  <Button variant="outline" className="mt-4 w-full">View Documents</Button>
-                </CardContent>
-              </Card>
             </div>
             <TaxPlanning />
           </div>
