@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -36,7 +35,6 @@ export default function Login() {
       navigate('/');
     } catch (error) {
       console.error('Google login error:', error);
-    } finally {
       setIsGoogleLoading(false);
     }
   };

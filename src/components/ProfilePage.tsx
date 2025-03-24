@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
@@ -40,18 +40,31 @@ const securitySchema = z.object({
 
 export function ProfilePage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { user } = useAuth();
+  const { user, updateUserProfile } = useAuth();
   
   const profileForm = useForm<z.infer<typeof profileSchema>>({
     resolver: zodResolver(profileSchema),
     defaultValues: {
-      name: user?.name || "",
-      email: user?.email || "",
+      name: "",
+      email: "",
       phone: "",
       address: "",
       bio: "",
     },
   });
+
+  // Update form when user data changes
+  useEffect(() => {
+    if (user) {
+      profileForm.reset({
+        name: user.name || "",
+        email: user.email || "",
+        phone: profileForm.getValues().phone || "",
+        address: profileForm.getValues().address || "",
+        bio: profileForm.getValues().bio || "",
+      });
+    }
+  }, [user, profileForm]);
 
   const securityForm = useForm<z.infer<typeof securitySchema>>({
     resolver: zodResolver(securitySchema),
@@ -65,8 +78,12 @@ export function ProfilePage() {
   const onProfileSubmit = async (data: z.infer<typeof profileSchema>) => {
     setIsSubmitting(true);
     try {
-      // In a real app, you would send this data to the server
-      console.log("Profile data:", data);
+      // Update user profile in the context
+      updateUserProfile({
+        name: data.name,
+        email: data.email,
+      });
+      
       toast({
         title: "Profile updated",
         description: "Your profile information has been successfully updated.",
@@ -118,11 +135,11 @@ export function ProfilePage() {
             <CardContent className="pt-6">
               <div className="flex flex-col items-center">
                 <Avatar className="h-24 w-24 mb-4">
-                  <AvatarImage src="https://i.pravatar.cc/192" alt={user?.name || "User"} />
+                  <AvatarImage src={user?.photoUrl || "https://i.pravatar.cc/192"} alt={user?.name || "User"} />
                   <AvatarFallback>{user?.name?.substring(0, 2) || "JD"}</AvatarFallback>
                 </Avatar>
-                <h3 className="text-lg font-medium">{user?.name || "Jane Doe"}</h3>
-                <p className="text-sm text-muted-foreground">{user?.email || "jane.doe@example.com"}</p>
+                <h3 className="text-lg font-medium">{user?.name || "User"}</h3>
+                <p className="text-sm text-muted-foreground">{user?.email || "user@example.com"}</p>
                 <p className="text-sm text-muted-foreground mt-1">Client</p>
                 
                 <Button variant="outline" className="mt-4 w-full">
