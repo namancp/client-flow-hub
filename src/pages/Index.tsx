@@ -149,7 +149,7 @@ const Index = () => {
             <div className="flex items-start justify-between">
               <div>
                 <p className="text-sm text-muted-foreground mb-1">Next Meeting</p>
-                <h3 className="text-lg font-semibold">Annual Review</h3>
+                <h3 className="text-lg font-semibold">Annual Review By Naman</h3>
                 <p className="text-sm mt-1">Dec 15, 2023 • 2:00 PM</p>
               </div>
               <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
