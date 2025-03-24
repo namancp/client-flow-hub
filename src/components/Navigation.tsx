@@ -18,6 +18,8 @@ import {
   LogOut,
   BellRing,
   CircleDollarSign,
+  CreditCard,
+  User
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
@@ -97,6 +99,11 @@ export const Navigation = () => {
       href: '/transfers',
     },
     {
+      label: 'Bank Details',
+      icon: <CreditCard className="h-5 w-5" />,
+      href: '/bank',
+    },
+    {
       label: 'Documents',
       icon: <FileText className="h-5 w-5" />,
       href: '/documents',
@@ -109,6 +116,11 @@ export const Navigation = () => {
       label: 'Tax Planning',
       icon: <Receipt className="h-5 w-5" />,
       href: '/tax',
+    },
+    {
+      label: 'Profile',
+      icon: <User className="h-5 w-5" />,
+      href: '/profile',
     },
     {
       label: 'Settings',

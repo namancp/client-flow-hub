@@ -18,6 +18,8 @@ import { CashFlow } from "./components/CashFlow";
 import { TransferFunds } from "./components/TransferFunds";
 import { DocumentCenter } from "./components/DocumentCenter";
 import { TaxPlanning } from "./components/TaxPlanning";
+import { BankDetails } from "./components/BankDetails";
+import { ProfilePage } from "./components/ProfilePage";
 
 const queryClient = new QueryClient();
 
@@ -62,6 +64,8 @@ const AppRoutes = () => {
       <Route path="/transfers" element={<DashboardPage><TransferFunds /></DashboardPage>} />
       <Route path="/documents" element={<DashboardPage><DocumentCenter /></DashboardPage>} />
       <Route path="/tax" element={<DashboardPage><TaxPlanning /></DashboardPage>} />
+      <Route path="/bank" element={<DashboardPage><BankDetails /></DashboardPage>} />
+      <Route path="/profile" element={<DashboardPage><ProfilePage /></DashboardPage>} />
       <Route path="/settings" element={<DashboardPage><div>Settings Page</div></DashboardPage>} />
       <Route path="*" element={<NotFound />} />
     </Routes>
