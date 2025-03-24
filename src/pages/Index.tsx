@@ -1,27 +1,11 @@
 
 import React, { useState } from 'react';
-import { DashboardLayout } from '@/layouts/DashboardLayout';
 import { AccountsOverview } from '@/components/AccountsOverview';
-import { DocumentCenter } from '@/components/DocumentCenter';
 import { InvestmentPortfolio } from '@/components/InvestmentPortfolio';
 import { FinancialPlanning } from '@/components/FinancialPlanning';
-import { InsuranceCards } from '@/components/InsuranceCards';
-import { LoanManagement } from '@/components/LoanManagement';
-import { CashFlow } from '@/components/CashFlow';
-import { TransferFunds } from '@/components/TransferFunds';
-import { TaxPlanning } from '@/components/TaxPlanning';
 import { Button } from '@/components/ui/button';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Separator } from '@/components/ui/separator';
 import {
-  LayoutDashboard,
-  FileText,
-  TrendingUp,
-  ClipboardList,
-  Shield,
-  BanknoteIcon,
-  ArrowRightLeft,
-  Receipt,
   BellRing,
   User,
   Calendar,
@@ -48,8 +32,6 @@ const performanceData = [
 ];
 
 const Index = () => {
-  const [activeTab, setActiveTab] = useState('overview');
-
   const formatCurrency = (value: number) => {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
@@ -110,15 +92,13 @@ const Index = () => {
                 </p>
               </div>
               <div className="mt-4 sm:mt-0">
-                <Tabs defaultValue="1y" className="w-[260px]">
-                  <TabsList className="grid w-full grid-cols-5">
-                    <TabsTrigger value="1m">1M</TabsTrigger>
-                    <TabsTrigger value="3m">3M</TabsTrigger>
-                    <TabsTrigger value="6m">6M</TabsTrigger>
-                    <TabsTrigger value="1y">1Y</TabsTrigger>
-                    <TabsTrigger value="all">All</TabsTrigger>
-                  </TabsList>
-                </Tabs>
+                <div className="flex space-x-2">
+                  <Button variant="outline" size="sm">1M</Button>
+                  <Button variant="outline" size="sm">3M</Button>
+                  <Button variant="outline" size="sm">6M</Button>
+                  <Button variant="outline" size="sm" className="bg-muted">1Y</Button>
+                  <Button variant="outline" size="sm">All</Button>
+                </div>
               </div>
             </div>
             <div className="h-56">
@@ -234,102 +214,19 @@ const Index = () => {
   );
 
   return (
-    <DashboardLayout>
+    <>
       <WelcomeHeader />
       
       <OverviewCards />
       
-      <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-        <div className="overflow-auto pb-2">
-          <TabsList className="inline-flex h-9 lg:h-10 bg-muted/30">
-            <TabsTrigger value="overview" className="flex items-center">
-              <LayoutDashboard className="h-4 w-4 mr-2" />
-              Overview
-            </TabsTrigger>
-            <TabsTrigger value="accounts" className="flex items-center">
-              <BanknoteIcon className="h-4 w-4 mr-2" />
-              Accounts
-            </TabsTrigger>
-            <TabsTrigger value="investments" className="flex items-center">
-              <TrendingUp className="h-4 w-4 mr-2" />
-              Investments
-            </TabsTrigger>
-            <TabsTrigger value="planning" className="flex items-center">
-              <ClipboardList className="h-4 w-4 mr-2" />
-              Planning
-            </TabsTrigger>
-            <TabsTrigger value="insurance" className="flex items-center">
-              <Shield className="h-4 w-4 mr-2" />
-              Insurance
-            </TabsTrigger>
-            <TabsTrigger value="loans" className="flex items-center">
-              <BanknoteIcon className="h-4 w-4 mr-2" />
-              Loans
-            </TabsTrigger>
-            <TabsTrigger value="cash" className="flex items-center">
-              <CircleDollarSign className="h-4 w-4 mr-2" />
-              Cash
-            </TabsTrigger>
-            <TabsTrigger value="transfers" className="flex items-center">
-              <ArrowRightLeft className="h-4 w-4 mr-2" />
-              Transfers
-            </TabsTrigger>
-            <TabsTrigger value="documents" className="flex items-center">
-              <FileText className="h-4 w-4 mr-2" />
-              Documents
-            </TabsTrigger>
-            <TabsTrigger value="tax" className="flex items-center">
-              <Receipt className="h-4 w-4 mr-2" />
-              Tax
-            </TabsTrigger>
-          </TabsList>
-        </div>
-        
-        <TabsContent value="overview" className="space-y-6 animate-fade-in">
-          <AccountsOverview />
-          <Separator className="my-8" />
-          <InvestmentPortfolio />
-          <Separator className="my-8" />
-          <FinancialPlanning />
-        </TabsContent>
-        
-        <TabsContent value="accounts" className="animate-fade-in">
-          <AccountsOverview />
-        </TabsContent>
-        
-        <TabsContent value="investments" className="animate-fade-in">
-          <InvestmentPortfolio />
-        </TabsContent>
-        
-        <TabsContent value="planning" className="animate-fade-in">
-          <FinancialPlanning />
-        </TabsContent>
-        
-        <TabsContent value="insurance" className="animate-fade-in">
-          <InsuranceCards />
-        </TabsContent>
-        
-        <TabsContent value="loans" className="animate-fade-in">
-          <LoanManagement />
-        </TabsContent>
-        
-        <TabsContent value="cash" className="animate-fade-in">
-          <CashFlow />
-        </TabsContent>
-        
-        <TabsContent value="transfers" className="animate-fade-in">
-          <TransferFunds />
-        </TabsContent>
-        
-        <TabsContent value="documents" className="animate-fade-in">
-          <DocumentCenter />
-        </TabsContent>
-        
-        <TabsContent value="tax" className="animate-fade-in">
-          <TaxPlanning />
-        </TabsContent>
-      </Tabs>
-    </DashboardLayout>
+      <div className="space-y-8">
+        <AccountsOverview />
+        <Separator className="my-8" />
+        <InvestmentPortfolio />
+        <Separator className="my-8" />
+        <FinancialPlanning />
+      </div>
+    </>
   );
 };
 

@@ -17,13 +17,13 @@ import {
   UserCircle,
   LogOut,
   BellRing,
+  CircleDollarSign,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { useIsMobile } from '@/hooks/use-mobile';
-import { ScrollArea } from '@/components/ui/scroll-area';
 import { useAuth } from '@/contexts/AuthContext';
 import { 
   DropdownMenu,
@@ -58,11 +58,11 @@ export const Navigation = () => {
       href: '/',
     },
     {
-      label: 'Documents',
-      icon: <FileText className="h-5 w-5" />,
-      href: '/documents',
+      label: 'Accounts',
+      icon: <BanknoteIcon className="h-5 w-5" />,
+      href: '/accounts',
       badge: {
-        count: 2,
+        count: 4,
         variant: 'secondary',
       },
     },
@@ -88,13 +88,22 @@ export const Navigation = () => {
     },
     {
       label: 'Cash Management',
-      icon: <BanknoteIcon className="h-5 w-5" />,
+      icon: <CircleDollarSign className="h-5 w-5" />,
       href: '/cash',
     },
     {
       label: 'Transfers',
       icon: <ArrowRightLeft className="h-5 w-5" />,
       href: '/transfers',
+    },
+    {
+      label: 'Documents',
+      icon: <FileText className="h-5 w-5" />,
+      href: '/documents',
+      badge: {
+        count: 2,
+        variant: 'secondary',
+      },
     },
     {
       label: 'Tax Planning',
@@ -180,15 +189,16 @@ export const Navigation = () => {
 
   return (
     <aside className={cn(
-      "bg-sidebar border-r border-border transition-all duration-300 flex flex-col z-30",
+      "bg-sidebar text-sidebar-foreground border-r border-border transition-all duration-300 flex flex-col z-30",
       isMobile ? (isOpen ? "fixed inset-y-0 left-0 w-64" : "fixed inset-y-0 left-0 w-16") : "w-64",
       "h-screen"
     )}>
       <NavHeader />
-      <ScrollArea className="flex-1 py-2">
-        <nav className="px-2 space-y-1">
+      <nav className="flex-1 py-2 overflow-y-auto">
+        <div className="px-2 space-y-1">
           {primaryNavItems.map((item) => {
-            const isActive = location.pathname === item.href;
+            const isActive = location.pathname === item.href || 
+                            (item.href !== '/' && location.pathname.startsWith(item.href));
             return (
               <TooltipProvider key={item.href} delayDuration={100}>
                 <Tooltip>
@@ -199,7 +209,7 @@ export const Navigation = () => {
                         "flex items-center py-3 px-3 rounded-md text-sm font-medium transition-colors",
                         isActive
                           ? "bg-sidebar-accent text-sidebar-accent-foreground"
-                          : "text-sidebar-foreground hover:bg-sidebar-accent/50 hover:text-sidebar-accent-foreground",
+                          : "hover:bg-sidebar-accent/50 hover:text-sidebar-accent-foreground",
                         isMobile && !isOpen ? "justify-center" : "space-x-3"
                       )}
                     >
@@ -226,8 +236,8 @@ export const Navigation = () => {
               </TooltipProvider>
             );
           })}
-        </nav>
-      </ScrollArea>
+        </div>
+      </nav>
       <UserProfile />
     </aside>
   );
