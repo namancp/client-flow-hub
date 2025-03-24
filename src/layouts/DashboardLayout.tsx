@@ -108,7 +108,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
         </header>
         <main 
           className={cn(
-            "flex-1 p-6 md:p-8 lg:p-10 overflow-auto transition-all duration-300",
+            "flex-1 p-[1.5rem] pr-[1.5rem] pb-[1.5rem] pl-[4.5rem] md:p-8 lg:p-10 overflow-auto transition-all duration-300",
             className
           )}
         >
