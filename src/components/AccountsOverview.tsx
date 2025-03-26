@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { ArrowUpRight, ArrowDownRight, MoreHorizontal, ExternalLink } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
+
 interface AccountData {
   id: string;
   name: string;
@@ -59,6 +60,18 @@ const mockAccounts: AccountData[] = [
   }
 ];
 
+const currentDate = new Date();
+
+const formatDate = (date) => {
+  const optionsDate = { month: 'short', day: '2-digit', year: 'numeric' };
+  const optionsTime = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+
+  const formattedDate = date.toLocaleDateString('en-US', optionsDate);
+  const formattedTime = date.toLocaleTimeString('en-US', optionsTime);
+
+  return `${formattedDate.replace(',', '')} • ${formattedTime}`;
+};
+
 export const AccountsOverview = () => {
   const formatCurrency = (amount: number, currency: string = 'USD') => {
     return new Intl.NumberFormat('en-US', {
@@ -94,7 +107,7 @@ export const AccountsOverview = () => {
           <p className="text-muted-foreground">Manage and track all your financial accounts</p>
         </div>
         <Badge variant="outline" className="px-3 py-1.5">
-          <span className="text-xs font-medium">Last Updated: Today, 2:45 PM</span>
+          <span className="text-xs font-medium">Last Updated: {formatDate(currentDate)}</span>
         </Badge>
       </div>
 
