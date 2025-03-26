@@ -158,7 +158,7 @@ export const FinancialPlanning = () => {
               type="text"
               className="w-full mt-4 p-2 bg-gray-800 text-white border-2 border-blue-500 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
-            <div className="mt-6 flex justify-end">
+            <div className="mt-6 gap-1 flex justify-end">
               <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600" onClick={setModal}>
                 Close
               </button>
