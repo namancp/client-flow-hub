@@ -71,7 +71,7 @@ const Index = () => {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
         <div>
           <p className="text-sm text-muted-foreground mb-1">Welcome back</p>
-          <h1 className="text-3xl font-bold tracking-tight">Jane Doe</h1>
+          <h1 className="text-3xl font-bold tracking-tight">Naman Rungta</h1>
         </div>
         <div className="flex items-center mt-4 sm:mt-0 space-x-2">
           <Button variant="outline" size="sm" className="h-9">
