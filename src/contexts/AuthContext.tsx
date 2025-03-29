@@ -69,7 +69,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       // Simulate a successful login with a mock user
       const mockUser: User = {
         id: '1',
-        name: 'Jane Doe',
+        name: 'Sakshi Chhapolia',
         email: email,
         role: 'client'
       };
@@ -138,28 +138,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
                 <p>to continue to ClientFlow Financial Dashboard</p>
                 
                 <div class="account" id="account1">
-                  <img class="avatar" src="https://i.pravatar.cc/150?img=68" alt="Jane Smith">
+                  <img class="avatar" src="https://i.pravatar.cc/150?img=68" alt="Sakshi Chhapolia">
                   <div>
-                    <strong>Jane Smith</strong><br>
-                    <small>jane.smith@gmail.com</small>
+                    <strong>Sakshi Chhapolia</strong><br>
+                    <small>Sakshi.Chhapolia@gmail.com</small>
                   </div>
                 </div>
                 
-                <div class="account" id="account2">
-                  <img class="avatar" src="https://i.pravatar.cc/150?img=33" alt="Robert Johnson">
-                  <div>
-                    <strong>Robert Johnson</strong><br>
-                    <small>robert.johnson@gmail.com</small>
-                  </div>
-                </div>
-                
-                <div class="account" id="account3">
-                  <img class="avatar" src="https://i.pravatar.cc/150?img=15" alt="Emily Davis">
-                  <div>
-                    <strong>Emily Davis</strong><br>
-                    <small>emily.davis@gmail.com</small>
-                  </div>
-                </div>
                 
                 <button class="close-btn" id="closeBtn">Use another account</button>
                 
@@ -184,25 +169,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
                 
                 document.getElementById('account1').addEventListener('click', function() {
                   selectedUser = 1;
-                  selectedName = "Jane Smith";
-                  selectedEmail = "jane.smith@gmail.com";
+                  selectedName = "Sakshi Chhapolia";
+                  selectedEmail = "Sakshi.Chhapolia@gmail.com";
                   selectedPhoto = "https://i.pravatar.cc/150?img=68";
-                  showPermissions();
-                });
-                
-                document.getElementById('account2').addEventListener('click', function() {
-                  selectedUser = 2;
-                  selectedName = "Robert Johnson";
-                  selectedEmail = "robert.johnson@gmail.com";
-                  selectedPhoto = "https://i.pravatar.cc/150?img=33";
-                  showPermissions();
-                });
-                
-                document.getElementById('account3').addEventListener('click', function() {
-                  selectedUser = 3;
-                  selectedName = "Emily Davis";
-                  selectedEmail = "emily.davis@gmail.com";
-                  selectedPhoto = "https://i.pravatar.cc/150?img=15";
                   showPermissions();
                 });
                 

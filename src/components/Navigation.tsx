@@ -168,8 +168,8 @@ export const Navigation = () => {
             </Avatar>
             {(!isMobile || isOpen) && (
               <div className="flex-1 min-w-0">
-                <p className="font-medium text-sm">{user?.name || 'Jane Doe'}</p>
-                <p className="text-xs text-muted-foreground truncate">{user?.email || 'jane.doe@example.com'}</p>
+                <p className="font-medium text-sm">{user?.name || 'Sakshi Chhapolia'}</p>
+                <p className="text-xs text-muted-foreground truncate">{user?.email || 'Sakshi@example.com'}</p>
               </div>
             )}
           </div>

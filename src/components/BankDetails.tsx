@@ -86,7 +86,7 @@ export function BankDetails() {
                   <FormItem>
                     <FormLabel>Account Holder Name</FormLabel>
                     <FormControl>
-                      <Input placeholder="John Doe" {...field} />
+                      <Input placeholder="Sakshi Chhapolia" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

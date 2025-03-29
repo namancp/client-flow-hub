@@ -135,7 +135,7 @@ export function ProfilePage() {
             <CardContent className="pt-6">
               <div className="flex flex-col items-center">
                 <Avatar className="h-24 w-24 mb-4">
-                  <AvatarImage src={user?.photoUrl || "https://i.pravatar.cc/192"} alt={user?.name || "User"} />
+                  <AvatarImage src={user?.photoUrl || "https://ui-avatars.com/api/?name=Sakshi+Chhapolia"} alt={user?.name || "User"} />
                   <AvatarFallback>{user?.name?.substring(0, 2) || "JD"}</AvatarFallback>
                 </Avatar>
                 <h3 className="text-lg font-medium">{user?.name || "User"}</h3>
@@ -176,7 +176,7 @@ export function ProfilePage() {
                             <FormItem>
                               <FormLabel>Full Name</FormLabel>
                               <FormControl>
-                                <Input placeholder="John Doe" {...field} />
+                                <Input placeholder="Sakshi Chhapolia" {...field} />
                               </FormControl>
                               <FormMessage />
                             </FormItem>
@@ -190,7 +190,7 @@ export function ProfilePage() {
                             <FormItem>
                               <FormLabel>Email Address</FormLabel>
                               <FormControl>
-                                <Input placeholder="john.doe@example.com" {...field} />
+                                <Input placeholder="Sakshi.Chhapolia@example.com" {...field} />
                               </FormControl>
                               <FormMessage />
                             </FormItem>

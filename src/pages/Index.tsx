@@ -71,7 +71,7 @@ const Index = () => {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
         <div>
           <p className="text-sm text-muted-foreground mb-1">Welcome back</p>
-          <h1 className="text-3xl font-bold tracking-tight">Naman Rungta</h1>
+          <h1 className="text-3xl font-bold tracking-tight">Sakshi Chhapolia</h1>
         </div>
         <div className="flex items-center mt-4 sm:mt-0 space-x-2">
           <Button variant="outline" size="sm" className="h-9">
@@ -83,7 +83,7 @@ const Index = () => {
             <span className="absolute -top-1 -right-1 h-3 w-3 bg-destructive rounded-full"></span>
           </Button>
           <Avatar className="h-9 w-9 border">
-            <AvatarImage src="https://i.pravatar.cc/100" alt="User" />
+            <AvatarImage src="https://ui-avatars.com/api/?name=Sakshi+Chhapolia" alt="User" />
             <AvatarFallback>JD</AvatarFallback>
           </Avatar>
         </div>
@@ -180,11 +180,11 @@ const Index = () => {
             <div className="flex items-start justify-between">
               <div>
                 <p className="text-sm text-muted-foreground mb-1">Financial Advisor</p>
-                <h3 className="text-lg font-semibold">John Smith</h3>
+                <h3 className="text-lg font-semibold">Sakshi Chhapolia</h3>
                 <p className="text-sm mt-1">Available for call</p>
               </div>
               <Avatar className="h-10 w-10 border">
-                <AvatarImage src="https://i.pravatar.cc/101" alt="Advisor" />
+                <AvatarImage src="https://ui-avatars.com/api/?name=Sakshi+Chhapolia" alt="Advisor" />
                 <AvatarFallback>JS</AvatarFallback>
               </Avatar>
             </div>
