@@ -76,7 +76,7 @@ const Index = () => {
         <div className="flex items-center mt-4 sm:mt-0 space-x-2">
           <Button variant="outline" size="sm" className="h-9">
             <Calendar className="h-4 w-4 mr-2" />
-            Current Date: {formatDate(currentDate)}
+            {formatDate(currentDate)}
           </Button>
           <Button variant="outline" size="icon" className="h-9 w-9 relative">
             <BellRing className="h-4 w-4" />
@@ -163,7 +163,7 @@ const Index = () => {
               <div>
                 <p className="text-sm text-muted-foreground mb-1">Next Meeting</p>
                 <h3 className="text-lg font-semibold">Annual Review</h3>
-                <p className="text-sm mt-1">Next Date: {formatDate(nextDate)}</p>
+                <p className="text-sm mt-1">{formatDate(nextDate)}</p>
               </div>
               <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
                 <Calendar className="h-5 w-5" />

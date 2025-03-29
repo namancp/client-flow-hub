@@ -144,15 +144,26 @@ export const FinancialPlanning = () => {
       {isOpen && (
         <div className="fixed inset-0 bg-gray-500 bg-opacity-75 flex justify-center items-center z-50" onClick={setModal}>
           <div
-            className="w-1/3 bg-white h-full p-8 transform transition-all duration-300 ease-in-out translate-x-full"
+            className="w-1/3 bg-gray-900 text-white h-full p-8 transform transition-all duration-300 ease-in-out translate-x-full"
             onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside the modal
           >
             <h2 className="text-xl font-semibold">Modal Title</h2>
             <p className="mt-4">This is a simple modal using Tailwind CSS.</p>
-            <input type="text" />
-            <div className="mt-6 flex justify-end">
+            <input 
+              type="text"
+              className="w-full mt-4 p-2 bg-gray-800 text-white border-2 border-blue-500 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+            />
+            <p className="mt-4">This is a 2nd simple modal using Tailwind CSS.</p>
+            <input
+              type="text"
+              className="w-full mt-4 p-2 bg-gray-800 text-white border-2 border-blue-500 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+            />
+            <div className="mt-6 gap-1 flex justify-end">
               <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600" onClick={setModal}>
                 Close
+              </button>
+              <button className="px-3 py-2 bg-blue-500 text-white rounded hover:bg-blue-600" onClick={setModal}>
+                Confirm_Botton
               </button>
             </div>
           </div>
@@ -169,7 +180,7 @@ export const FinancialPlanning = () => {
         </div>
         <Button onClick={setModal}>
           <Target className="h-4 w-4 mr-2" />
-          Add Goal 2
+          Add Goal
         </Button>
       </div>
 
