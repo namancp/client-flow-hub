@@ -172,7 +172,7 @@ export const FinancialPlanning = () => {
       <div className="flex justify-between items-center">
         <div>
           <h2 className="text-2xl font-semibold tracking-tight">
-            Financial Planning {initialVar}
+            Financial Planning
           </h2>
           <p className="text-muted-foreground">
             Track progress towards your financial goals
