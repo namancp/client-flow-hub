@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { cn } from '@/lib/utils';
@@ -19,7 +18,8 @@ import {
   BellRing,
   CircleDollarSign,
   CreditCard,
-  User
+  User,
+  Users
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
@@ -27,6 +27,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { useAuth } from '@/contexts/AuthContext';
+import { UserProfileDropdown } from './UserProfileDropdown';
 import { 
   DropdownMenu,
   DropdownMenuContent,
@@ -127,6 +128,11 @@ export const Navigation = () => {
       icon: <Settings className="h-5 w-5" />,
       href: '/settings',
     },
+    {
+      label: 'Advisors',
+      icon: <Users className="h-5 w-5" />,
+      href: '/advisors',
+    },
   ];
 
   const toggleSidebar = () => setIsOpen(!isOpen);
@@ -156,46 +162,7 @@ export const Navigation = () => {
 
   const UserProfile = () => (
     <div className="mt-auto p-4">
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <div className={cn(
-            "flex items-center space-x-3 p-3 rounded-md transition-colors",
-            "hover:bg-sidebar-accent cursor-pointer"
-          )}>
-            <Avatar className="h-10 w-10 border-2 border-white">
-              <AvatarImage src="https://i.pravatar.cc/100" alt="User" />
-              <AvatarFallback>{user?.name.substring(0, 2) || 'JD'}</AvatarFallback>
-            </Avatar>
-            {(!isMobile || isOpen) && (
-              <div className="flex-1 min-w-0">
-                <p className="font-medium text-sm">{user?.name || 'Sakshi Chhapolia'}</p>
-                <p className="text-xs text-muted-foreground truncate">{user?.email || 'Sakshi@example.com'}</p>
-              </div>
-            )}
-          </div>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" className="w-56">
-          <DropdownMenuLabel>My Account</DropdownMenuLabel>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem>
-            <UserCircle className="mr-2 h-4 w-4" />
-            <span>Profile</span>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            <BellRing className="mr-2 h-4 w-4" />
-            <span>Notifications</span>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            <Settings className="mr-2 h-4 w-4" />
-            <span>Settings</span>
-          </DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem onClick={handleLogout}>
-            <LogOut className="mr-2 h-4 w-4" />
-            <span>Log out</span>
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
+      <UserProfileDropdown />
     </div>
   );
 
