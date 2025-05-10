@@ -25,3 +25,24 @@ export interface BookingData {
   notes?: string | null;
   created_at?: string;
 }
+
+// Type for the Supabase database schema
+export type Database = {
+  public: {
+    Tables: {
+      users: {
+        Row: UserData;
+        Insert: UserData;
+        Update: Partial<UserData>;
+      };
+      bookings: {
+        Row: BookingData;
+        Insert: BookingData;
+        Update: Partial<BookingData>;
+      };
+    };
+    Views: Record<string, never>;
+    Functions: Record<string, never>;
+    Enums: Record<string, never>;
+  };
+};

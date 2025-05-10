@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
@@ -41,7 +40,7 @@ export function AdvisorProfile() {
           .single();
           
         if (error) throw error;
-        setAdvisor(data as UserData as AdvisorDetails);
+        setAdvisor(data as AdvisorDetails);
       } catch (error) {
         console.error('Error fetching advisor details:', error);
       } finally {

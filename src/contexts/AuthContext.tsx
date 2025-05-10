@@ -30,7 +30,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   
   // Convert the UserContext user to the old format expected by components
   useEffect(() => {
-    if (userContext?.user && userContext?.profile) {
+    if (userContext.user && userContext.profile) {
       setCompatUser({
         id: userContext.user.id,
         name: userContext.profile.full_name || '',
@@ -41,11 +41,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     } else {
       setCompatUser(null);
     }
-  }, [userContext?.user, userContext?.profile]);
+  }, [userContext.user, userContext.profile]);
   
   // These are compatibility methods that will call the actual methods from UserContext
   const login = async (email: string, password: string) => {
-    if (userContext?.signIn) {
+    if (userContext.signIn) {
       await userContext.signIn(email, password);
     }
   };
@@ -56,13 +56,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
   
   const logout = () => {
-    if (userContext?.signOut) {
+    if (userContext.signOut) {
       userContext.signOut();
     }
   };
   
   const updateUserProfile = (userData: Partial<User>) => {
-    if (userContext?.updateProfile) {
+    if (userContext.updateProfile) {
       userContext.updateProfile({
         full_name: userData.name,
         // Add other fields as needed
@@ -73,8 +73,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   return (
     <AuthContext.Provider value={{ 
       user: compatUser, 
-      isAuthenticated: userContext?.isAuthenticated || false, 
-      isLoading: userContext?.isLoading || false, 
+      isAuthenticated: userContext.isAuthenticated || false, 
+      isLoading: userContext.isLoading || false, 
       login, 
       loginWithGoogle, 
       logout,

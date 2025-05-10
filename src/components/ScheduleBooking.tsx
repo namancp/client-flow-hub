@@ -52,7 +52,7 @@ export function ScheduleBooking() {
           .single();
           
         if (error) throw error;
-        setAdvisor(data as UserData as AdvisorInfo);
+        setAdvisor(data as AdvisorInfo);
       } catch (error) {
         console.error('Error fetching advisor info:', error);
       } finally {
@@ -123,7 +123,7 @@ export function ScheduleBooking() {
       
       const { error } = await supabase
         .from('bookings')
-        .insert(bookingData as any);
+        .insert(bookingData);
       
       if (error) throw error;
       

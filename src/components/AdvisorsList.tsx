@@ -31,7 +31,7 @@ export function AdvisorsList() {
           
         if (error) throw error;
         
-        // Use type assertion to inform TypeScript about the structure
+        // Format advisors data for display
         const formattedAdvisors = (data as UserData[]).map(advisor => ({
           id: advisor.id,
           name: advisor.full_name || 'Unknown Advisor',
