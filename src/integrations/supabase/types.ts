@@ -9,6 +9,29 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      advisors: {
+        Row: {
+          calendly_link: string | null
+          id: string
+        }
+        Insert: {
+          calendly_link?: string | null
+          id: string
+        }
+        Update: {
+          calendly_link?: string | null
+          id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "advisors_id_fkey"
+            columns: ["id"]
+            isOneToOne: true
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       bookings: {
         Row: {
           advisor_id: string

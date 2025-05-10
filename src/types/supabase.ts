@@ -15,6 +15,11 @@ export interface UserData {
   created_at?: string;
 }
 
+export interface AdvisorData {
+  id: string;
+  calendly_link?: string | null;
+}
+
 export interface BookingData {
   id?: string;
   user_id: string;
@@ -34,6 +39,11 @@ export type Database = {
         Row: UserData;
         Insert: UserData;
         Update: Partial<UserData>;
+      };
+      advisors: {
+        Row: AdvisorData;
+        Insert: AdvisorData;
+        Update: Partial<AdvisorData>;
       };
       bookings: {
         Row: BookingData;

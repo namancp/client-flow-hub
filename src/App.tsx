@@ -5,7 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { UserProvider, useUser } from "./contexts/UserContext";
-import { AuthProvider } from "./contexts/AuthContext"; // Add AuthProvider import
+import { AuthProvider } from "./contexts/AuthContext"; 
 import { ThemeProvider } from "./contexts/ThemeProvider";
 import Index from "./pages/Index";
 import Login from "./pages/Login";
@@ -13,6 +13,7 @@ import NotFound from "./pages/NotFound";
 import Advisors from "./pages/Advisors";
 import AdvisorProfilePage from "./pages/AdvisorProfilePage";
 import SchedulePage from "./pages/SchedulePage";
+import ScheduleSessionPage from "./pages/ScheduleSessionPage"; // Add new schedule session page
 import { DashboardLayout } from "./layouts/DashboardLayout";
 import { AccountsOverview } from "./components/AccountsOverview";
 import { InvestmentPortfolio } from "./components/InvestmentPortfolio";
@@ -75,6 +76,16 @@ const AppRoutes = () => {
       <Route path="/advisors" element={<DashboardPage><Advisors /></DashboardPage>} />
       <Route path="/profile/:id" element={<DashboardPage><AdvisorProfilePage /></DashboardPage>} />
       <Route path="/schedule/:id" element={<DashboardPage><SchedulePage /></DashboardPage>} />
+      {/* New routes */}
+      <Route path="/advisor-profile" element={<DashboardPage><AdvisorProfilePage /></DashboardPage>} />
+      <Route path="/schedule-session" element={<DashboardPage><ScheduleSessionPage /></DashboardPage>} />
+      {/* Security and profile related routes */}
+      <Route path="/contact-info" element={<DashboardPage><div>Contact Information Page</div></DashboardPage>} />
+      <Route path="/additional-info" element={<DashboardPage><div>Additional Information Page</div></DashboardPage>} />
+      <Route path="/beneficiaries" element={<DashboardPage><div>Beneficiaries Page</div></DashboardPage>} />
+      <Route path="/affiliations" element={<DashboardPage><div>Affiliations Page</div></DashboardPage>} />
+      <Route path="/trusts" element={<DashboardPage><div>Trusts Management Page</div></DashboardPage>} />
+      <Route path="/security" element={<DashboardPage><div>Security & Access Page</div></DashboardPage>} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
@@ -83,7 +94,7 @@ const AppRoutes = () => {
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <UserProvider>
-      <AuthProvider> {/* Add AuthProvider here, after UserProvider */}
+      <AuthProvider>
         <ThemeProvider>
           <TooltipProvider>
             <Toaster />

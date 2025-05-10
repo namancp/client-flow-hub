@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { cn } from '@/lib/utils';
@@ -28,6 +29,7 @@ import { Badge } from '@/components/ui/badge';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { useAuth } from '@/contexts/AuthContext';
 import { UserProfileDropdown } from './UserProfileDropdown';
+import { AdvisorCard } from './AdvisorCard';
 import { 
   DropdownMenu,
   DropdownMenuContent,
@@ -161,19 +163,19 @@ export const Navigation = () => {
   );
 
   const UserProfile = () => (
-    <div className="mt-auto p-4">
+    <div className="p-4">
       <UserProfileDropdown />
     </div>
   );
 
   return (
     <aside className={cn(
-      "bg-sidebar text-sidebar-foreground border-r border-border transition-all duration-300 flex flex-col z-30",
+      "bg-[#0B1C2C] text-white border-r border-[#1C3A55] transition-all duration-300 flex flex-col z-30",
       isMobile ? (isOpen ? "fixed inset-y-0 left-0 w-64" : "fixed inset-y-0 left-0 w-16") : "w-64",
       "h-screen"
     )}>
       <NavHeader />
-      <nav className="flex-1 py-2 overflow-y-auto">
+      <nav className="flex-1 py-2 overflow-y-auto scrollbar-none">
         <div className="px-2 space-y-1">
           {primaryNavItems.map((item) => {
             const isActive = location.pathname === item.href || 
@@ -217,6 +219,7 @@ export const Navigation = () => {
           })}
         </div>
       </nav>
+      <AdvisorCard />
       <UserProfile />
     </aside>
   );

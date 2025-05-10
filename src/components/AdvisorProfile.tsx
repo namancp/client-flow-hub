@@ -1,46 +1,33 @@
+
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Calendar, CalendarIcon, ChevronLeft, Clock, LinkedinIcon, Mail, MapPin, Phone, User } from 'lucide-react';
+import { Calendar, LinkedinIcon, Mail, MapPin, User } from 'lucide-react';
 import { UserData } from '@/types/supabase';
 
-type AdvisorDetails = {
-  id: string;
-  full_name: string | null;
-  email: string | null;
-  phone: string | null;
-  role: 'customer' | 'advisor';
-  avatar_url: string | null;
-  location: string | null;
-  linkedin_url: string | null;
-  bio: string | null;
-};
-
 export function AdvisorProfile() {
-  const { id } = useParams<{ id: string }>();
-  const [advisor, setAdvisor] = useState<AdvisorDetails | null>(null);
+  const [advisor, setAdvisor] = useState<UserData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   
   useEffect(() => {
     async function fetchAdvisorDetails() {
       try {
-        if (!id) return;
-        
         setIsLoading(true);
         
+        // In a real app, this would fetch the specific advisor by ID
         const { data, error } = await supabase
           .from('users')
           .select('*')
-          .eq('id', id)
           .eq('role', 'advisor')
+          .limit(1)
           .single();
           
         if (error) throw error;
-        setAdvisor(data as AdvisorDetails);
+        setAdvisor(data as UserData);
       } catch (error) {
         console.error('Error fetching advisor details:', error);
       } finally {
@@ -49,7 +36,7 @@ export function AdvisorProfile() {
     }
     
     fetchAdvisorDetails();
-  }, [id]);
+  }, []);
   
   if (isLoading) {
     return (
@@ -72,12 +59,6 @@ export function AdvisorProfile() {
   if (!advisor) {
     return (
       <div className="container max-w-4xl py-8">
-        <Button variant="ghost" size="sm" className="mb-6" asChild>
-          <Link to="/advisors">
-            <ChevronLeft className="mr-1 h-4 w-4" />
-            Back to Advisors
-          </Link>
-        </Button>
         <div className="text-center py-12">
           <h2 className="text-2xl font-semibold mb-2">Advisor Not Found</h2>
           <p className="text-muted-foreground">This advisor doesn't exist or is no longer available.</p>
@@ -88,60 +69,51 @@ export function AdvisorProfile() {
   
   return (
     <div className="container max-w-4xl py-8">
-      <Button variant="ghost" size="sm" className="mb-6" asChild>
-        <Link to="/advisors">
-          <ChevronLeft className="mr-1 h-4 w-4" />
-          Back to Advisors
-        </Link>
-      </Button>
-      
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div className="md:col-span-1">
-          <Card>
+          <Card className="bg-[#13293D] border-[#1C3A55]">
             <CardContent className="p-6 flex flex-col items-center text-center">
-              <Avatar className="h-32 w-32 border-2 border-primary/20 mb-4">
-                <AvatarImage src={advisor.avatar_url || undefined} alt={advisor.full_name || 'Advisor'} />
+              <Avatar className="h-32 w-32 border-2 border-[#1C3A55] mb-4">
+                <AvatarImage src={advisor.avatar_url || undefined} alt={advisor.full_name || 'Tony Hein'} />
                 <AvatarFallback>
                   <User className="h-16 w-16" />
                 </AvatarFallback>
               </Avatar>
               
-              <h2 className="text-2xl font-semibold">{advisor.full_name}</h2>
-              <p className="text-muted-foreground mb-4">Financial Advisor</p>
+              <h2 className="text-2xl font-semibold text-white">{advisor.full_name || 'Tony Hein'}</h2>
+              <p className="text-[#A3B5C2] mb-4">Financial Advisor</p>
               
-              <div className="w-full space-y-4 mt-2">
+              <div className="w-full space-y-4 mt-2 text-left">
                 {advisor.email && (
                   <div className="flex items-center">
-                    <Mail className="h-4 w-4 mr-2 text-muted-foreground" />
-                    <span className="text-sm truncate">{advisor.email}</span>
-                  </div>
-                )}
-                
-                {advisor.phone && (
-                  <div className="flex items-center">
-                    <Phone className="h-4 w-4 mr-2 text-muted-foreground" />
-                    <span className="text-sm">{advisor.phone}</span>
-                  </div>
-                )}
-                
-                {advisor.location && (
-                  <div className="flex items-center">
-                    <MapPin className="h-4 w-4 mr-2 text-muted-foreground" />
-                    <span className="text-sm">{advisor.location}</span>
+                    <Mail className="h-4 w-4 mr-2 text-[#A3B5C2]" />
+                    <a 
+                      href={`mailto:${advisor.email}`} 
+                      className="text-sm text-[#A3B5C2] hover:text-white"
+                    >
+                      {advisor.email}
+                    </a>
                   </div>
                 )}
                 
                 {advisor.linkedin_url && (
                   <div className="flex items-center">
-                    <LinkedinIcon className="h-4 w-4 mr-2 text-muted-foreground" />
+                    <LinkedinIcon className="h-4 w-4 mr-2 text-[#A3B5C2]" />
                     <a 
                       href={advisor.linkedin_url} 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="text-sm text-blue-600 dark:text-blue-400 hover:underline truncate"
+                      className="text-sm text-[#00C896] hover:underline"
                     >
                       LinkedIn Profile
                     </a>
+                  </div>
+                )}
+                
+                {advisor.location && (
+                  <div className="flex items-center">
+                    <MapPin className="h-4 w-4 mr-2 text-[#A3B5C2]" />
+                    <span className="text-sm text-[#A3B5C2]">{advisor.location || 'Chicago, IL'}</span>
                   </div>
                 )}
               </div>
@@ -150,75 +122,79 @@ export function AdvisorProfile() {
         </div>
         
         <div className="md:col-span-2">
-          <Tabs defaultValue="about">
-            <TabsList className="mb-6">
-              <TabsTrigger value="about">About</TabsTrigger>
-              <TabsTrigger value="schedule">Schedule</TabsTrigger>
-              <TabsTrigger value="reviews">Reviews</TabsTrigger>
+          <Tabs defaultValue="bio" className="w-full">
+            <TabsList className="bg-[#13293D] border border-[#1C3A55] mb-6">
+              <TabsTrigger value="bio" className="data-[state=active]:bg-[#1C3A55]">Bio</TabsTrigger>
+              <TabsTrigger value="location" className="data-[state=active]:bg-[#1C3A55]">Location</TabsTrigger>
+              <TabsTrigger value="education" className="data-[state=active]:bg-[#1C3A55]">Education</TabsTrigger>
             </TabsList>
             
-            <TabsContent value="about" className="space-y-4">
-              <div>
-                <h3 className="text-lg font-semibold mb-2">About Me</h3>
-                <p className="text-muted-foreground">
-                  {advisor.bio || 'No biography provided.'}
-                </p>
-              </div>
-              
-              <div>
-                <h3 className="text-lg font-semibold mb-2">Specializations</h3>
-                <ul className="list-disc list-inside text-muted-foreground">
-                  <li>Investment Planning</li>
-                  <li>Retirement Planning</li>
-                  <li>Tax Optimization</li>
-                  <li>Estate Planning</li>
-                </ul>
-              </div>
-              
-              <div>
-                <h3 className="text-lg font-semibold mb-2">Experience</h3>
-                <div className="space-y-3 text-muted-foreground">
-                  <p>10+ years of experience in financial planning and wealth management.</p>
-                </div>
-              </div>
-            </TabsContent>
-            
-            <TabsContent value="schedule">
-              <Card>
+            <TabsContent value="bio" className="mt-0">
+              <Card className="bg-[#13293D] border-[#1C3A55]">
                 <CardContent className="p-6">
-                  <h3 className="text-lg font-semibold mb-4">Schedule a Meeting</h3>
-                  
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <CalendarIcon className="h-4 w-4" />
-                      <span>Available for meetings Monday - Friday</span>
-                    </div>
-                    
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <Clock className="h-4 w-4" />
-                      <span>9:00 AM - 5:00 PM (Eastern Time)</span>
-                    </div>
-                    
-                    <Button className="w-full mt-4" asChild>
-                      <Link to={`/schedule/${advisor.id}`}>
-                        Schedule Appointment
-                      </Link>
-                    </Button>
-                  </div>
+                  <h3 className="text-lg font-semibold mb-4 text-white">About</h3>
+                  <p className="text-[#A3B5C2] leading-relaxed">
+                    {advisor.bio || `Tony, a financial strategist, specializes in holistic wealth planning for high-net-worth clients. 
+                    With over 15 years of experience in investment management and estate planning, he helps clients navigate complex 
+                    financial situations with clarity and confidence. Tony is known for his personalized approach, 
+                    taking time to understand each client's unique goals and concerns before developing customized strategies.`}
+                  </p>
                 </CardContent>
               </Card>
             </TabsContent>
             
-            <TabsContent value="reviews">
-              <Card>
+            <TabsContent value="location" className="mt-0">
+              <Card className="bg-[#13293D] border-[#1C3A55]">
                 <CardContent className="p-6">
-                  <h3 className="text-lg font-semibold mb-4">Client Reviews</h3>
-                  <p className="text-muted-foreground">No reviews available yet.</p>
+                  <h3 className="text-lg font-semibold mb-4 text-white">Office Location</h3>
+                  <p className="text-[#A3B5C2]">
+                    123 Financial Avenue<br />
+                    Chicago, IL 60601<br /><br />
+                    Our offices are located in the heart of Chicago's financial district,
+                    easily accessible by public transportation and with parking available nearby.
+                  </p>
+                </CardContent>
+              </Card>
+            </TabsContent>
+            
+            <TabsContent value="education" className="mt-0">
+              <Card className="bg-[#13293D] border-[#1C3A55]">
+                <CardContent className="p-6">
+                  <h3 className="text-lg font-semibold mb-4 text-white">Education & Certifications</h3>
+                  <ul className="space-y-3 text-[#A3B5C2]">
+                    <li className="border-b border-[#1C3A55] pb-2">
+                      <span className="font-medium text-white">MBA, Finance</span><br />
+                      University of Chicago, Booth School of Business
+                    </li>
+                    <li className="border-b border-[#1C3A55] pb-2">
+                      <span className="font-medium text-white">BA, Economics</span><br />
+                      Northwestern University
+                    </li>
+                    <li className="border-b border-[#1C3A55] pb-2">
+                      <span className="font-medium text-white">Certified Financial Planner (CFP®)</span>
+                    </li>
+                    <li>
+                      <span className="font-medium text-white">Chartered Financial Analyst (CFA)</span>
+                    </li>
+                  </ul>
                 </CardContent>
               </Card>
             </TabsContent>
           </Tabs>
         </div>
+      </div>
+      
+      <div className="sticky bottom-8 flex justify-center mt-8">
+        <Button 
+          size="lg" 
+          className="bg-[#00C896] hover:bg-[#00B389] text-white px-8"
+          asChild
+        >
+          <Link to="/schedule-session">
+            <Calendar className="mr-2 h-5 w-5" />
+            Book a Session
+          </Link>
+        </Button>
       </div>
     </div>
   );
