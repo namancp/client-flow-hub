@@ -1,3 +1,4 @@
+
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { User } from '@supabase/supabase-js';
@@ -20,7 +21,7 @@ export type UserProfile = {
   created_at: string;
 };
 
-type UserContextType = {
+export type UserContextType = {
   user: User | null;
   profile: UserProfile | null;
   isLoading: boolean;
