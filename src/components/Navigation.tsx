@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { cn } from '@/lib/utils';
@@ -19,8 +18,7 @@ import {
   BellRing,
   CircleDollarSign,
   CreditCard,
-  User,
-  Users
+  User
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
@@ -129,11 +127,6 @@ export const Navigation = () => {
       label: 'Settings',
       icon: <Settings className="h-5 w-5" />,
       href: '/settings',
-    },
-    {
-      label: 'Advisors',
-      icon: <Users className="h-5 w-5" />,
-      href: '/advisors',
     },
   ];
 

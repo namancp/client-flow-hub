@@ -23,7 +23,7 @@ export function ScheduleSession() {
       try {
         setIsLoading(true);
         
-        // In a real app, this would fetch the specific advisor by ID
+        // First, fetch a sample advisor from the users table
         const { data: userData, error: userError } = await supabase
           .from('users')
           .select('*')
@@ -31,25 +31,45 @@ export function ScheduleSession() {
           .limit(1)
           .single();
           
-        if (userError) throw userError;
+        if (userError) {
+          console.error('Error fetching advisor:', userError);
+          // Create a fallback advisor if none is found
+          setAdvisor({
+            id: 'default-advisor',
+            full_name: 'Tony Hein',
+            role: 'advisor',
+            calendly_link: 'https://calendly.com/tony-hein/30min'
+          } as AdvisorWithCalendly);
+          setIsLoading(false);
+          return;
+        }
         
-        // Get the calendly link for this advisor
+        // If we found an advisor, try to get their calendly link
         const { data: advisorData, error: advisorError } = await supabase
           .from('advisors')
           .select('calendly_link')
           .eq('id', userData.id)
           .single();
         
-        if (advisorError && advisorError.code !== 'PGRST116') { // Not found is ok
-          throw advisorError;
+        // If we get an error but it's just that no matching row was found, it's okay
+        if (advisorError && advisorError.code !== 'PGRST116') {
+          console.error('Error fetching advisor data:', advisorError);
         }
         
+        // Combine the user data with the calendly link
         setAdvisor({
           ...userData as UserData,
           calendly_link: advisorData?.calendly_link || 'https://calendly.com/tony-hein/30min'
         });
       } catch (error) {
-        console.error('Error fetching advisor details:', error);
+        console.error('Error in fetchAdvisorWithCalendly:', error);
+        // Fallback to a default advisor
+        setAdvisor({
+          id: 'default-advisor',
+          full_name: 'Tony Hein',
+          role: 'advisor',
+          calendly_link: 'https://calendly.com/tony-hein/30min'
+        } as AdvisorWithCalendly);
       } finally {
         setIsLoading(false);
       }
@@ -73,17 +93,6 @@ export function ScheduleSession() {
     );
   }
   
-  if (!advisor) {
-    return (
-      <div className="container max-w-5xl py-8">
-        <div className="text-center py-12">
-          <h2 className="text-2xl font-semibold mb-2">Advisor Not Found</h2>
-          <p className="text-muted-foreground">The advisor you're looking for doesn't exist or is not available for booking.</p>
-        </div>
-      </div>
-    );
-  }
-  
   return (
     <div className="container max-w-5xl py-8">
       <div className="mb-6 flex items-center">
@@ -99,13 +108,13 @@ export function ScheduleSession() {
         <CardHeader className="pb-0">
           <div className="flex items-center gap-4">
             <Avatar className="h-12 w-12 border-2 border-[#1C3A55]">
-              <AvatarImage src={advisor.avatar_url || undefined} alt={advisor.full_name || 'Advisor'} />
+              <AvatarImage src={advisor?.avatar_url || undefined} alt={advisor?.full_name || 'Advisor'} />
               <AvatarFallback>
                 <User className="h-6 w-6" />
               </AvatarFallback>
             </Avatar>
             <div>
-              <CardTitle className="text-xl text-white">Schedule with {advisor.full_name || 'Tony Hein'}</CardTitle>
+              <CardTitle className="text-xl text-white">Schedule with {advisor?.full_name || 'Tony Hein'}</CardTitle>
               <p className="text-[#A3B5C2] text-sm mt-1">Select your preferred session length and time</p>
             </div>
           </div>
