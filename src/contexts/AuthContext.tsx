@@ -1,7 +1,7 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useToast } from '@/hooks/use-toast';
-import { useUser } from './UserContext';
+import { useUser, UserContextType } from './UserContext';
 
 interface User {
   id: string;
@@ -25,7 +25,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 // This is a compatibility wrapper that uses the new UserContext
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const userContext = useContext(UserContext.Consumer as any);
+  const userContext = useUser();
   const [compatUser, setCompatUser] = useState<User | null>(null);
   
   // Convert the UserContext user to the old format expected by components

@@ -12,6 +12,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { cn } from '@/lib/utils';
 import { toast } from '@/hooks/use-toast';
+import { UserData, BookingData } from '@/types/supabase';
 
 type AdvisorInfo = {
   id: string;
@@ -51,7 +52,7 @@ export function ScheduleBooking() {
           .single();
           
         if (error) throw error;
-        setAdvisor(data as AdvisorInfo);
+        setAdvisor(data as UserData as AdvisorInfo);
       } catch (error) {
         console.error('Error fetching advisor info:', error);
       } finally {
@@ -113,14 +114,16 @@ export function ScheduleBooking() {
       const sessionDateTime = new Date(selectedDate);
       sessionDateTime.setHours(hours, minutes, 0, 0);
       
+      const bookingData: BookingData = {
+        user_id: user.id,
+        advisor_id: advisor.id,
+        session_time: sessionDateTime.toISOString(),
+        session_length: selectedSlot.duration,
+      };
+      
       const { error } = await supabase
         .from('bookings')
-        .insert({
-          user_id: user.id,
-          advisor_id: advisor.id,
-          session_time: sessionDateTime.toISOString(),
-          session_length: selectedSlot.duration,
-        });
+        .insert(bookingData as any);
       
       if (error) throw error;
       

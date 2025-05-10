@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Calendar, CalendarIcon, ChevronLeft, Clock, LinkedinIcon, Mail, MapPin, Phone, User } from 'lucide-react';
+import { UserData } from '@/types/supabase';
 
 type AdvisorDetails = {
   id: string;
@@ -40,7 +41,7 @@ export function AdvisorProfile() {
           .single();
           
         if (error) throw error;
-        setAdvisor(data as AdvisorDetails);
+        setAdvisor(data as UserData as AdvisorDetails);
       } catch (error) {
         console.error('Error fetching advisor details:', error);
       } finally {

@@ -1,9 +1,9 @@
-
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { User } from '@supabase/supabase-js';
 import { useToast } from '@/hooks/use-toast';
 import { toast } from '@/hooks/use-toast';
+import { UserData } from '@/types/supabase';
 
 export type UserProfile = {
   id: string;
@@ -66,7 +66,7 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
         .single();
 
       if (error) throw error;
-      if (data) setProfile(data as UserProfile);
+      if (data) setProfile(data as UserData as UserProfile);
     } catch (error) {
       console.error('Error fetching user profile:', error);
     }
@@ -115,8 +115,8 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
     };
   }, []);
 
-  // Sign in function
-  const signIn = async (email: string, password: string) => {
+  // Sign in function - modified to return void
+  const signIn = async (email: string, password: string): Promise<void> => {
     setIsLoading(true);
     try {
       // Clean up auth state first
@@ -129,7 +129,7 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
         // Continue even if this fails
       }
       
-      const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+      const { error } = await supabase.auth.signInWithPassword({ email, password });
       
       if (error) throw error;
       
@@ -137,8 +137,6 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
         title: "Welcome back!",
         description: "You have successfully signed in.",
       });
-      
-      return data;
     } catch (error: any) {
       toast({
         variant: "destructive",
@@ -151,14 +149,14 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
-  // Sign up function
-  const signUp = async (email: string, password: string, userData: Partial<UserProfile>) => {
+  // Sign up function - modified to return void
+  const signUp = async (email: string, password: string, userData: Partial<UserProfile>): Promise<void> => {
     setIsLoading(true);
     try {
       // Clean up auth state
       cleanUpAuthState();
       
-      const { data, error } = await supabase.auth.signUp({
+      const { error } = await supabase.auth.signUp({
         email,
         password,
         options: {
@@ -176,8 +174,6 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
         title: "Account created!",
         description: "You have successfully signed up.",
       });
-      
-      return data;
     } catch (error: any) {
       toast({
         variant: "destructive",
@@ -215,13 +211,13 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
   };
 
   // Update profile function
-  const updateProfile = async (updates: Partial<UserProfile>) => {
+  const updateProfile = async (updates: Partial<UserProfile>): Promise<void> => {
     try {
       if (!user) throw new Error("User not authenticated");
       
       const { error } = await supabase
         .from('users')
-        .update(updates)
+        .update(updates as any)
         .eq('id', user.id);
       
       if (error) throw error;
@@ -255,7 +251,7 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
-  const value = {
+  const value: UserContextType = {
     user,
     profile,
     isLoading,

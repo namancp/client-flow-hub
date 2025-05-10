@@ -5,6 +5,7 @@ import { AdvisorCard, AdvisorProps } from './AdvisorCard';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Search } from 'lucide-react';
+import { UserData } from '@/types/supabase';
 
 export function AdvisorsList() {
   const [advisors, setAdvisors] = useState<AdvisorProps[]>([]);
@@ -30,7 +31,8 @@ export function AdvisorsList() {
           
         if (error) throw error;
         
-        const formattedAdvisors = data.map(advisor => ({
+        // Use type assertion to inform TypeScript about the structure
+        const formattedAdvisors = (data as UserData[]).map(advisor => ({
           id: advisor.id,
           name: advisor.full_name || 'Unknown Advisor',
           role: 'Financial Advisor',
