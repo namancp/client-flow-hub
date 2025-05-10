@@ -61,7 +61,7 @@ export function ScheduleSession() {
   const getCalendlyUrl = () => {
     // If we have a custom calendly link, use it, otherwise use a default
     const baseUrl = advisor?.calendly_link || 'https://calendly.com/tony-hein';
-    return `${baseUrl.replace(/\\/+$/, '')}/${sessionLength}`;
+    return `${baseUrl.replace(/\/+$/, '')}/${sessionLength}`;
   };
   
   if (isLoading) {
